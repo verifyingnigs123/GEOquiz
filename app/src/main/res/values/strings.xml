@@ -16,4 +16,9 @@
     <string name="show_answer_button">Show Answer</string>
     <string name="cheat_button">Cheat!</string>
     <string name="judgment_toast">Cheating is wrong.</string>
+    <string name="previous_button">Previous</string>
+    <string name="cheats_remaining">Cheats Remaining: %d</string>
+    <string name="api_level">API Level: </string>
+    <string name="quiz_complete">Quiz Complete!</string>
+    <string name="score_format">Your Score: %d%%</string>
 </resources>
