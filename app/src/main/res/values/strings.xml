@@ -21,4 +21,6 @@
     <string name="api_level">API Level: </string>
     <string name="quiz_complete">Quiz Complete!</string>
     <string name="score_format">Your Score: %d%%</string>
+    <string name="total_score">Total Score: %d / %d</string>
+    <string name="question_number">Question %d / %d</string>
 </resources>

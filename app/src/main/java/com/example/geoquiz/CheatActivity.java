@@ -17,8 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CheatActivity extends AppCompatActivity {
     private static final String EXTRA_ANSWER_IS_TRUE = "com.example.geoquiz.answer_is_true";
     private static final String EXTRA_ANSWER_SHOWN = "com.example.geoquiz.answer_shown";
+    private static final String KEY_IS_ANSWER_SHOWN = "is_answer_shown";
 
     private boolean mAnswerIsTrue;
+    private boolean mIsAnswerShown;
     private TextView mAnswerTextView;
     private Button mShowAnswerButton;
 
@@ -43,18 +45,38 @@ public class CheatActivity extends AppCompatActivity {
         mAnswerTextView = (TextView) findViewById(R.id.answer_text_view);
         mShowAnswerButton = (Button) findViewById(R.id.show_answer_button);
 
+        if (savedInstanceState != null) {
+            mIsAnswerShown = savedInstanceState.getBoolean(KEY_IS_ANSWER_SHOWN, false);
+        }
+
+        if (mIsAnswerShown) {
+            showAnswer();
+            mShowAnswerButton.setVisibility(View.INVISIBLE);
+        }
+
         mShowAnswerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mAnswerIsTrue) {
-                    mAnswerTextView.setText(R.string.true_button);
-                } else {
-                    mAnswerTextView.setText(R.string.false_button);
-                }
-                setAnswerShownResult(true);
+                mIsAnswerShown = true;
+                showAnswer();
                 animateButtonReveal();
             }
         });
+    }
+
+    private void showAnswer() {
+        if (mAnswerIsTrue) {
+            mAnswerTextView.setText(R.string.true_button);
+        } else {
+            mAnswerTextView.setText(R.string.false_button);
+        }
+        setAnswerShownResult(true);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(KEY_IS_ANSWER_SHOWN, mIsAnswerShown);
     }
 
     private void animateButtonReveal() {
